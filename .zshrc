@@ -3,6 +3,14 @@ export SHELL='/bin/zsh'
 export EDITOR='vim'
 export VISUAL='vim'
 
+# ssh-agent
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent > ~/.ssh-agent-thing
+fi
+if [[ "$SSH_AGENT_PID" == "" ]]; then
+    eval "$(<~/.ssh-agent-thing)"
+fi
+
 #screenfetch | lolcat
 screenfetch
 
@@ -104,15 +112,18 @@ alias curl="curl --user-agent 'noleak'"
 alias shred="shred -zf"
 
 alias kall="killall"
+
 alias cky="conky"
 alias kcky="killall conky"
 
-alias meteo="curl http://wttr.in"
-alias moon="curl http://wttr.in/Moon"
+alias news="newsbeuter"
+
 
 alias ll="ls -larth"
 alias tch="touch"
-alias gls="glances"
+
+alias vi="vim"
+alias svi="sudo vim"
 
 # Mirrorlist
 alias reflect="sudo reflector --verbose --country 'France' -l 30 -p http --sort rate --save /etc/pacman.d/mirrorlist"
@@ -128,11 +139,12 @@ alias clamav="clamscan -r -i --exclude-dir='^/sys|^/proc|^/dev|^/lib|^/bin|^/sbi
 alias clamove="clamscan --recursive=yes --infected --remove --exclude-dir='^/sys|^/proc|^/dev|^/lib|^/bin|^/sbin' /"
 alias claminf="clamscan --recursive=yes --infected --exclude-dir='^/sys|^/proc|^/dev|^/lib|^/bin|^/sbin' /"
 
-# Journal
+# Journalctl
 alias jctlxe="journalctl -xe"
 alias jctlxn="journalctl -xn"
 alias jctlf="journalctl -f"
 
+# Systemctl
 alias sctllsa="systemctl -lt service --all"
 alias sctlfa="systemctl --failed --all"
 alias sctlf="systemctl --failed"
@@ -141,7 +153,7 @@ alias sctlluf="systemctl list-unit-files"
 # Yaourt
 alias yaqma="yaourt -Qma"
 alias yac="yaourt -C"
-alias yastts="yaourt --stats"
+alias yasts="yaourt --stats"
 alias orphan="yaourt -Qdt"
 
 # All apps
@@ -162,3 +174,14 @@ alias lppstop="sudo /opt/lampp/lampp stop"
 # Ranger
 alias r="ranger"
 alias sr="sudo ranger"
+
+# Pacman 
+alias rpi="pacman -Qs"
+alias rpd="pacman -Ss"
+
+
+# zsh
+alias sozh="source .zshrc"
+
+# Microcode
+alias mcode="dmesg | grep microcode"

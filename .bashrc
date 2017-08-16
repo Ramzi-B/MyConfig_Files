@@ -22,7 +22,7 @@ screenfetch
 
 # alias
 alias ls="ls --color"
-#alias vi="vim"
+alias vi="vim"
 alias shred="shred -zf"
 alias python="python2"
 alias wget="wget -U 'noleak''"

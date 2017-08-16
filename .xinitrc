@@ -36,20 +36,22 @@ export SSH_AUTH_SOCK
 
 eval $(ssh-agent)
 
-# Start apps
+# Nvidia
 nvidia-settings --load-config-only &
+
+# Start apps
+unclutter &
 #compton -b &
 nm-applet &
+kalu &
+nvdock &
+
 urxvt -bg black -fg orange -T Terminal -e  htop &
 urxvt -bg black -fg darkgray -T Terminal -e ranger &
 urxvt -bg black -fg darkred -T Terminal &
-#xscreensaver &
-#conky &
-unclutter &
-#parcellite &
-#redshift-gtk &
-kalu &
-nvdock &
+
+#test#
+#export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
 
 # Start Windows Manager
 exec awesome
