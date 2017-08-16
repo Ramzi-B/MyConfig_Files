@@ -1,0 +1,12 @@
+## Include all existing syntax definitions.
+include "/usr/share/nano/*.nanorc"
+
+set mouse
+set autoindent
+set smarthome
+
+## Set color
+set titlecolor brightwhite.blue
+set statuscolor brightwhite.green
+set keycolor red
+set functioncolor yellow

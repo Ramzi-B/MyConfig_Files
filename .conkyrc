@@ -1,0 +1,149 @@
+## Hackawax conky
+
+xftfont Misc Tamsyn:size=12
+use_xft yes
+xftalpha 1 
+text_buffer_size 2048
+override_utf8_locale yes
+uppercase no
+use_spacer right
+
+# his is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+background no
+own_window no
+own_window_transparent yes
+
+#own_window yes
+#own_window_argb_visual yes
+#own_window_type desktop
+
+##########
+#own_window_class Conky
+#own_window yes
+#own_window_type normal
+#own_window_transparent yes
+#own_window_argb_visual yes
+#own_window_argb_value 200
+#own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+##########
+
+cpu_avg_samples 1
+net_avg_samples 2
+total_run_times 0
+
+double_buffer yes
+no_buffers yes
+out_to_console no
+# Update interval in seconds
+update_interval 1
+
+alignment top_right
+maximum_width 600
+minimum_size 600 
+
+gap_x 30
+gap_y 30
+
+#stippled_borders 4
+border_width 1
+
+draw_borders no
+draw_graph_borders no
+draw_outline no
+draw_shades no
+
+show_graph_scale no
+show_graph_range no
+
+#default_graph_size 0 25
+
+#default_color white
+#default_shade_color black
+#default_outline_color black
+
+temperature_unit celsius
+
+#stuff after 'TEXT' will be formatted on screen
+TEXT
+
+${color #7F8ED3}hackawax@$nodename      ${alignc}Uptime : ${color #9E9E9E}$uptime${alignr}${color #7F8ED3}$sysname $kernel ${color #7F8ED3}$machine
+${color #303030}Processes : ${color #FAEA73}$processes  ${color #303030}Running : ${color #FAEA73}$running_processes/$running_threads  ${color #000000}Update : ${color #FAEA73}${execpi 3600 checkupdates | wc -l}${color #303030}${alignr}${color #303030}Load : ${color #9E9E9E}$loadavg
+
+${color #222222}GPU Temp1 : ${color #9E9E9E}${exec nvidia-settings -t -q [gpu:0]/GPUCoreTemp} °    ${color #222222}Fan Speed : ${color #9E9E9E}${execi 5 nvidia-settings -q [fan:0]/GPUCurrentFanSpeed -t} %    ${color #222222}Mem Used : ${color #9E9E9E}${execi 5 nvidia-settings -q [gpu:0]/UsedDedicatedGPUMemory -t} /${exec nvidia-settings -q [gpu:0]/TotalDedicatedGPUMemory -t} MiB
+${color #222222}GPU Temp2 : ${color #9E9E9E}${exec nvidia-settings -t -q [gpu:1]/GPUCoreTemp} °    ${color #222222}Fan Speed : ${color #9E9E9E}${execi 5 nvidia-settings -q [fan:1]/GPUCurrentFanSpeed -t} %    ${color #222222}Mem Used : ${color #9E9E9E}${execi 5 nvidia-settings -q [gpu:1]/UsedDedicatedGPUMemory -t} /${exec nvidia-settings -q [gpu:1]/TotalDedicatedGPUMemory -t} MiB
+${color #000000}CPU : ${color #FAEA73}$cpu%    ${color #000000}Temp : ${color #9E9E9E}${hwmon 1 temp 1}°    ${color #000000}Core : ${color #9E9E9E}${hwmon 1 temp 2}° ${hwmon 1 temp 3}° ${hwmon 1 temp 4}° ${hwmon 1 temp 5}° ${alignr}${color #000000}Freq : ${color #FAEA73}$freq_g GHz
+${color #303030}${cpubar cpu}
+${color #303030}${cpugraph cpu1 15,240 000000 0077FF}${alignr}${color #303030}${cpugraph cpu5 15,240 000000 0077FF}
+${color #303030}${cpugraph cpu2 15,240 000000 0077FF}${alignr}${color #303030}${cpugraph cpu6 15,240 000000 0077FF}
+${color #303030}${cpugraph cpu3 15,240 000000 0077FF}${alignr}${color #303030}${cpugraph cpu7 15,240 000000 0077FF}
+${color #303030}${cpugraph cpu4 15,240 000000 0077FF}${alignr}${color #303030}${cpugraph cpu8 15,240 000000 0077FF}
+
+${color #000000}RAM : ${color #FAEA73}$memperc% ${alignr}${color #FAEA73}$mem${color #9E9E9E}/$memmax
+${color #303030}${membar}
+
+${color #222222}Gateway : ${color #7F8ED3}${gw_ip}        ${color #222222}Public : ${color #7F8ED3}${execi 60 wget -O - -q icanhazip.com}${alignr}${color #222222}Local : ${color #7F8ED3}${addr enp5s0}
+${color #5b6dad}Tcp : ${color #7F8ED3}${tcp_portmon 1 65535 count} ${color #000000}>>> ${tcp_portmon 1 65535 rip  0}   ${tcp_portmon 1 65535 rip  1}   ${tcp_portmon 1 65535 rip  2}   ${tcp_portmon 1 65535 rip  3}
+     	      ${tcp_portmon 1 65535 rip  4}   ${tcp_portmon 1 65535 rip  5}   ${tcp_portmon 1 65535 rip  6}   ${tcp_portmon 1 65535 rip  7}
+${color #303030}${voffset -6}${hr}
+
+${color #7F8ED3}Network  
+${color #000000}Dl : ${color #7F8ED3}${downspeed enp5s0}k/s                ${color #000000}${offset 80}Up : ${color #7F8ED3}${upspeed enp5s0}k/s
+${color #303030}${downspeedgraph enp5s0 15,240 000000 0077FF}   ${color #303030}${upspeedgraph enp5s0 15,240 000000 0077FF}
+
+${color #9E9E9E}Total : ${color #9E9E9E}${totaldown enp5s0}                           ${color #9E9E9E}Total : ${color #9E9E9E}${totalup enp5s0}
+${color #303030}${voffset -6}${hr}
+           
+${color #7F8ED3}Wireless : ${color #5B6DAD}${wireless_link_qual wlp0s20u1}% ${alignr}${color #5B6DAD}Ip : ${color #7F8ED3}${addr wlp0s20u1}
+${color #000000}Dl : ${color #7F8ED3}${downspeed wlp0s20u1}k/s                ${color #000000}${offset 80}Up : ${color #7f8ed3}${upspeed wlp0s20u1}k/s
+${color #303030}${downspeedgraph wlp0s20u1 15,240 000000 7F8ED3}   ${color #303030}${upspeedgraph wlp0s20u1 15,240 303030 7F8ED3}
+
+${color #9E9E9E}Total : ${color #9E9E9E}${totaldown wlp0s20u1}                           ${color #9E9E9E}Total : ${color #9E9E9E}${totalup wlp0s20u1} 
+${color #303030}${voffset -6}${hr}
+
+${color #7F8ED3}File Systems            ${color #7F8ED3}Disk I/O : ${color #CECECE}${diskio}                
+${diskiograph 15,240 000000 0077FF 750}
+
+${color #7F8ED3}Entropy : ${entropy_perc}%${alignr}${color #CECECE}${entropy_avail}${color #303030}/${color #CECECE}${entropy_poolsize} ${color #303030}${entropy_bar 5,200}
+       
+${color #000000}Boot ${alignr}${color #9E9E9E}${fs_used /boot}/${fs_size /boot} 
+${color #303030}${fs_bar /boot}
+${color #000000}Root ${alignr}${color #9E9E9E}${fs_used /root}/${fs_size /root} 
+${color #303030}${fs_bar /root}
+${color #000000}Swap : ${color #FAEA73}${swapperc}% ${alignr}${color #9E9E9E}${swap}${color #9E9E9E}/${swapmax} 
+${color #303030}$swapbar
+${color #000000}Home ${alignr}${color #9E9E9E}${fs_used /home}/${fs_size /home}
+${color #303030}${fs_bar /home}
+${color #000000}SSD 240 : ${color #9E9E9E}${hddtemp /dev/sda /dev/sdb /dev/sdc}° 
+${color #000000}SDD 120 : ${color #9E9E9E}${hddtemp /dev/sdb}° 
+${color #000000}HDD 1 : ${color #9E9E9E}${hddtemp /dev/sdc}° 
+${color #000000}MB/P : ${color #9E9E9E}${hwmon 0 temp 1}°  ${hwmon 0 temp 2}°
+
+#${color #7F8ED3}CPU1: ${cpu cpu1}%  ${freq} MHz  ${cpubar cpu1 8,60}
+#${color #7F8ED3}CPU2: ${cpu cpu2}%  ${freq} MHz  ${cpubar cpu2 8,60}
+#${color #7F8ED3}CPU3: ${cpu cpu3}%  ${freq} MHz  ${cpubar cpu3 8,60}
+#${color #7F8ED3}CPU4: ${cpu cpu4}%  ${freq} MHz  ${cpubar cpu4 8,60}
+#${color #7F8ED3}CPU5: ${cpu cpu5}%  ${freq} MHz  ${cpubar cpu5 8,60}
+#${color #7F8ED3}CPU6: ${cpu cpu6}%  ${freq} MHz  ${cpubar cpu6 8,60}
+#${color #7F8ED3}CPU7: ${cpu cpu7}%  ${freq} MHz  ${cpubar cpu7 8,60}
+#${color #7F8ED3}CPU8: ${cpu cpu8}%  ${freq} MHz  ${cpubar cpu8 8,60}
+
+${color #000000}CPU                PID     CPU%   MEM%                                                      
+${color #303030}${voffset -6}${hr}
+${color #E9383F} ${top name 1} ${top pid 1} ${top cpu 1} ${top mem 1}
+${color #842E1B} ${top name 2} ${top pid 2} ${top cpu 2} ${top mem 2}
+${color #EDD38C} ${top name 3} ${top pid 3} ${top cpu 3} ${top mem 3}
+${color #FEBFD2} ${top name 4} ${top pid 4} ${top cpu 4} ${top mem 4}                  
+${color #222222} ${top name 5} ${top pid 5} ${top cpu 5} ${top mem 5}
+
+${color #000000}MEM
+${color #303030}${voffset -6}${hr}
+${color #E9383F} ${top_mem name 1} ${top_mem pid 1} ${top_mem cpu 1} ${top_mem mem 1}
+${color #842E1B} ${top_mem name 2} ${top_mem pid 2} ${top_mem cpu 2} ${top_mem mem 2}
+${color #EDD38C} ${top_mem name 3} ${top_mem pid 3} ${top_mem cpu 3} ${top_mem mem 3}
+${color #FEBFD2} ${top_mem name 4} ${top_mem pid 4} ${top_mem cpu 4} ${top_mem mem 4}
+${color #222222} ${top_mem name 5} ${top_mem pid 5} ${top_mem cpu 5} ${top_mem mem 5}
+
+#${color #9E9E9E}${rss https://planet.archlinux.org/rss20.xml 1 item_titles 10 } 
