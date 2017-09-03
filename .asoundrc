@@ -1,12 +1,14 @@
-# Echantillonnage
-default.pcm.rate_converter "samplerate_best"
-
-# Sound Card Nvidia
+# sound card nvidia
 defaults.ctl.card 1
 defaults.pcm.card 1
 defaults.pcm.device 7
 defaults.timer.card 1
 
+# algorithme de re-echantillonnage
+default.pcm.!rate_converter "samplerate_best"
+
+# frequence d'echantillonage
+default.pcm.dmix.!rate 44100
 
 #pcm.!default {
 #	type hw

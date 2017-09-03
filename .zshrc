@@ -121,6 +121,7 @@ alias news="newsbeuter"
 
 alias ll="ls -larth"
 alias tch="touch"
+alias cls="clear"
 
 alias vi="vim"
 alias svi="sudo vim"
@@ -149,6 +150,7 @@ alias sctllsa="systemctl -lt service --all"
 alias sctlfa="systemctl --failed --all"
 alias sctlf="systemctl --failed"
 alias sctlluf="systemctl list-unit-files"
+alias sctltyp="systemctl --type=service"
 
 # Yaourt
 alias yaqma="yaourt -Qma"
@@ -157,7 +159,7 @@ alias yasts="yaourt --stats"
 alias orphan="yaourt -Qdt"
 
 # All apps
-alias cpkglst="pacman -Qqe | grep -vx "$(pacman -Qqm)" > /home/hackawax/Desktop/pkg.list"
+alias cpkglst="pacman -Qqe | grep -vx \"$(pacman -Qqm)\" > /home/hackawax/Desktop/pkg.list"
 
 # Net
 alias sntstp="sudo netstat -tp"
@@ -185,3 +187,6 @@ alias sozh="source .zshrc"
 
 # Microcode
 alias mcode="dmesg | grep microcode"
+
+# macchanger
+alias mac="sudo macchanger -A enp5s0"
