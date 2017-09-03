@@ -1,3 +1,3 @@
 # MyDotFiles
 
-Des fichiers de configuration sous Arch Linux.
+Mes fichiers perso sous Arch Linux.
