@@ -1,40 +1,40 @@
 #include ".colors/hackawax"
 
 
-URxvt.perl-ext-common:      default,clipboard,url-select,keyboard-select
-URxvt.url-select.launcher:  chromium
-URxvt.url-select.underline: true
-URxvt.keysym.M-u:           perl:url-select:select_next
-URxvt.keysym.M-Escape:      perl:keyboard-select:activate
-URxvt.keysym.M-s:           perl:keyboard-select:search
+URxvt.perl-ext-common        : default,clipboard,url-select,keyboard-select
+URxvt.url-select.launcher    : chromium
+URxvt.url-select.underline   : true
+URxvt.keysym.M-u             : perl:url-select:select_next
+URxvt.keysym.M-Escape        : perl:keyboard-select:activate
+URxvt.keysym.M-s             : perl:keyboard-select:search
 
 ! General
-URxvt.termName:  rxvt-256color
-URxvt.loginShell:         true
-URxvt.scrollBar:         false
-URxvt.saveLines:         65535
-URxvt.cursorBlink:        true
-URxvt.urgentOnBell:       true
-!URxvt.override-redirect:false
-!URxvt.borderLess:       false 
-!URxvt.internalBorder:       0
-!URxvt.externalBorder:       0
+URxvt.termName               :  rxvt-256color
+URxvt.loginShell             : true
+URxvt.scrollBar              : false
+URxvt.saveLines              : 65535
+URxvt.cursorBlink            : true
+URxvt.urgentOnBell           : true
+!URxvt.override-redirect      : false
+!URxvt.borderLess             : false 
+!URxvt.internalBorder         : 0
+!URxvt.externalBorder         : 0
  
 ! Extensions
-URxvt.perl-lib:        /usr/lib/urxvt/perl/
-URxvt.perl-ext: default,matcher,searchable-scrollback
-URxvt.matcher.button:  1
+URxvt.perl-lib               : /usr/lib/urxvt/perl/
+URxvt.perl-ext               : default,matcher,searchable-scrollback
+URxvt.matcher.button         : 1
  
 ! Appearance
 !  - use a bitmap font
-!URxvt.font:        -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-*-*
-!URxvt.boldFont:     -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-*-*
-!URxvt.boldFont:     -xos4-tamsyn-bold-*-*-*-12-*-*-*-*-*-*-*
+!URxvt.font                   : -xos4-terminus-medium-*-*-*-12-*-*-*-*-*-*-*
+!URxvt.boldFont               : -xos4-terminus-bold-*-*-*-12-*-*-*-*-*-*-*
+!URxvt.boldFont               : -xos4-tamsyn-bold-*-*-*-12-*-*-*-*-*-*-*
 
 !  - use xft for drawing fonts
-URxvt.font:       xft:Xos4Terminus:pixelsize=12
-!URxvt.font:       xft:MiscTamsyn:pixelsize=10
-!URxvt.font:       xft:Tamzen:pixelsize=10
+URxvt.font                   : xft:Xos4Terminus:pixelsize=12
+!URxvt.font                   : xft:MiscTamsyn:pixelsize=10
+!URxvt.font                   : xft:Tamzen:pixelsize=10
 
 Xft.lcdfilter                : lcddefault
 Xft.hintstyle                : hintslight
@@ -45,15 +45,15 @@ Xft.dpi                      : 100
 Xft.rgba                     : rgb
 
 ! Fix font space
-!URxvt.letterSpace: 1
+!URxvt.letterSpace            : 1
 
 !  - cursor
-URxvt.cursorColor: 	   #657b83
-URxvt.cursorUnderline: true
+URxvt.cursorColor            : #657b83
+URxvt.cursorUnderline        : true
 
 !  - pseudo transparency
-URxvt.shading:    30
-URxvt.transparent:true
-URxvt.geometry: 150x22
+URxvt.shading                : 30
+URxvt.transparent            : true
+URxvt.geometry               : 150x22
 
 

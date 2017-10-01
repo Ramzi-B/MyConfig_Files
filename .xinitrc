@@ -41,7 +41,7 @@ nvidia-settings --load-config-only &
 
 # Start apps
 unclutter &
-#compton -b &
+compton -b &
 nm-applet &
 kalu &
 nvdock &

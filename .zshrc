@@ -3,6 +3,16 @@ export SHELL='/bin/zsh'
 export EDITOR='vim'
 export VISUAL='vim'
 
+#export HISTTIMEFORMAT='%F %T : '
+
+export LESS_TERMCAP_mb=$'\E[01;31m' 
+export LESS_TERMCAP_md=$'\E[01;31m' 
+export LESS_TERMCAP_me=$'\E[0m' 
+export LESS_TERMCAP_se=$'\E[0m' 
+export LESS_TERMCAP_so=$'\E[01;44;33m' 
+export LESS_TERMCAP_ue=$'\E[0m' 
+export LESS_TERMCAP_us=$'\E[01;32m'
+
 # ssh-agent
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
     ssh-agent > ~/.ssh-agent-thing
@@ -68,7 +78,7 @@ HIST_STAMPS="dd.mm.yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git archlinux npm)
+plugins=(git archlinux npm gulp)
 
 # User configuration
 
@@ -76,6 +86,9 @@ export PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/opt/b
 
 # Ruby
 export PATH="${PATH}:/home/hackawax/.gem/ruby/2.4.0/bin"
+
+# Java
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 #export MANPATH="/usr/local/man:$MANPATH"
 
@@ -117,7 +130,7 @@ alias cky="conky"
 alias kcky="killall conky"
 
 alias news="newsbeuter"
-
+alias vbox="virtualbox -style gtk2"
 
 alias ll="ls -larth"
 alias tch="touch"
@@ -130,8 +143,8 @@ alias svi="sudo vim"
 alias reflect="sudo reflector --verbose --country 'France' -l 30 -p http --sort rate --save /etc/pacman.d/mirrorlist"
 
 # Clean up
-alias rmcache="rm -r .cache/*"
-alias rmthumb="rm -r .thumbnails/*"
+alias rmcache="rm -rfv .cache/*"
+alias rmthumb="rm -rfv .thumbnails/*"
 alias bv="browser-vacuum"
 
 # Clamscan
@@ -181,7 +194,6 @@ alias sr="sudo ranger"
 alias rpi="pacman -Qs"
 alias rpd="pacman -Ss"
 
-
 # zsh
 alias sozh="source .zshrc"
 
@@ -190,3 +202,9 @@ alias mcode="dmesg | grep microcode"
 
 # macchanger
 alias mac="sudo macchanger -A enp5s0"
+
+# generer mot de passe
+alias gmodp="</dev/urandom tr -dc '12345@#$%^&*(){}_A-Z-a-z-0-9'| fold -w10 | head -10"
+alias gmodp15="</dev/urandom tr -dc '12345@#$%^&*(){}_A-Z-a-z-0-9'| fold -w15 | head -10"
+
+
