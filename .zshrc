@@ -207,4 +207,6 @@ alias mac="sudo macchanger -A enp5s0"
 alias gmodp="</dev/urandom tr -dc '12345@#$%^&*(){}_A-Z-a-z-0-9'| fold -w10 | head -10"
 alias gmodp15="</dev/urandom tr -dc '12345@#$%^&*(){}_A-Z-a-z-0-9'| fold -w15 | head -10"
 
+# in case of 'Error: watch' with npm
+alias ewnpm="echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p"
 
