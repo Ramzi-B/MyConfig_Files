@@ -5,7 +5,7 @@ defaults.pcm.device 7
 defaults.timer.card 1
 
 # algorithme de re-echantillonnage
-default.pcm.!rate_converter "samplerate_best"
+default.pcm.!rate_converter "samplerate_medium"
 
 # frequence d'echantillonage
 default.pcm.dmix.!rate 44100
