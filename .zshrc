@@ -90,6 +90,9 @@ export PATH="${PATH}:/home/hackawax/.gem/ruby/2.4.0/bin"
 # Java
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# Composer
+export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+
 #export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -129,10 +132,11 @@ alias kall="killall"
 alias cky="conky"
 alias kcky="killall conky"
 
-alias news="newsbeuter"
+alias news="newsboat"
 alias vbox="virtualbox -style gtk2"
 
 alias ll="ls -larth"
+alias lc="ls -a"
 alias tch="touch"
 alias cls="clear"
 
@@ -178,13 +182,18 @@ alias cpkglst="pacman -Qqe | grep -vx \"$(pacman -Qqm)\" > /home/hackawax/Deskto
 alias sntstp="sudo netstat -tp"
 alias sdump="sudo tcpdump"
 alias srape="sudo etherape"
+alias ipa="ip -c address show"
 
 # AUR update
 alias aurup="yaourt -Syu --devel --aur"
 
-# Start Stop lampp server
+# Start | Stop lampp server
 alias lppstart="sudo /opt/lampp/lampp start"
 alias lppstop="sudo /opt/lampp/lampp stop"
+
+# Start | Stop apache & mysql
+alias startserver="systemctl start httpd.service && systemctl start mysqld.service"
+alias stopserver="systemctl stop httpd.service && systemctl start mysqld.service"
 
 # Ranger
 alias r="ranger"
