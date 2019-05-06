@@ -1,6 +1,6 @@
 #!/bin/bash
 
-timestamp="$(date +%H%M%S%d%m%Y)"
+timestamp="$(date +%Hh%Mm%Ss%d-%m-%Y)"
 targetbase="$HOME/screenshot2"
 
 if [ ! -e $targetbase ]; then
