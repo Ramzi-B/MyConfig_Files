@@ -5,12 +5,12 @@ export VISUAL='vim'
 
 #export HISTTIMEFORMAT='%F %T : '
 
-export LESS_TERMCAP_mb=$'\E[01;31m' 
-export LESS_TERMCAP_md=$'\E[01;31m' 
-export LESS_TERMCAP_me=$'\E[0m' 
-export LESS_TERMCAP_se=$'\E[0m' 
-export LESS_TERMCAP_so=$'\E[01;44;33m' 
-export LESS_TERMCAP_ue=$'\E[0m' 
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;32m'
 
 # ssh-agent
@@ -199,7 +199,7 @@ alias stopserver="systemctl stop httpd.service && systemctl start mysqld.service
 alias r="ranger"
 alias sr="sudo ranger"
 
-# Pacman 
+# Pacman
 alias rpi="pacman -Qs"
 alias rpd="pacman -Ss"
 
@@ -213,9 +213,8 @@ alias mcode="dmesg | grep microcode"
 alias mac="sudo macchanger -A enp5s0"
 
 # generer mot de passe
-alias gmodp="</dev/urandom tr -dc '12345@#$%^&*(){}_A-Z-a-z-0-9'| fold -w10 | head -10"
-alias gmodp15="</dev/urandom tr -dc '12345@#$%^&*(){}_A-Z-a-z-0-9'| fold -w15 | head -10"
+alias gpwd="</dev/urandom tr -dc '12345@#$%^&*(){}_A-Z-a-z-0-9'| fold -w10 | head -10"
+alias gpwd15="</dev/urandom tr -dc '12345@#$%^&*(){}_A-Z-a-z-0-9'| fold -w15 | head -10"
 
 # in case of 'Error: watch' with npm
 alias ewnpm="echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p"
-
