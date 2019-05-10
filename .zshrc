@@ -1,17 +1,26 @@
 export ZSH=/home/hackawax/.dotfiles/oh-my-zsh
-export SHELL='/bin/zsh'
-export EDITOR='vim'
-export VISUAL='vim'
+export SHELL="/bin/zsh"
+export EDITOR="vim"
+export VISUAL="vim"
+export TERM="xterm-256color"
+
+# npm path
+export PATH=~/.npm-global/bin:$PATH
+
+# xterm transparence
+[ -n "$XTERM_VERSION" ] && transset-df --id "$WINDOWID" >/dev/null
 
 #export HISTTIMEFORMAT='%F %T : '
 
-export LESS_TERMCAP_mb=$'\E[01;31m'
-export LESS_TERMCAP_md=$'\E[01;31m'
-export LESS_TERMCAP_me=$'\E[0m'
-export LESS_TERMCAP_se=$'\E[0m'
-export LESS_TERMCAP_so=$'\E[01;44;33m'
-export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_mb=$'\E[01;31m' 
+export LESS_TERMCAP_md=$'\E[01;31m' 
+export LESS_TERMCAP_me=$'\E[0m' 
+export LESS_TERMCAP_se=$'\E[0m' 
+export LESS_TERMCAP_so=$'\E[01;44;33m' 
+export LESS_TERMCAP_ue=$'\E[0m' 
 export LESS_TERMCAP_us=$'\E[01;32m'
+
+export QT_QPA_PLATFORMTHEME="qt5ct"
 
 # ssh-agent
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
@@ -21,20 +30,26 @@ if [[ "$SSH_AGENT_PID" == "" ]]; then
     eval "$(<~/.ssh-agent-thing)"
 fi
 
+#neofetch
+#neofetch | lolcat
+#screenfetch
 #screenfetch | lolcat
-screenfetch
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="xiong-chiamiov-plus"
-#ZSH_THEME="agnoster"
+ZSH_THEME="agnoster"
+#ZSH_THEME="amuse"
 #ZSH_THEME="ys"
 #ZSH_THEME="gentoo"
-#SH_THEME="bira"
-ZSH_THEME="juanghurtado"
+#ZSH_THEME="bira"
+#ZSH_THEME="juanghurtado"
 #ZSH_THEME="theunraveler"
+#POWERLEVEL9K_MODE='nerdfont-complete'
+#POWERLEVEL9K_MODE='awesome-fontconfig'
+#ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -59,7 +74,7 @@ ZSH_THEME="juanghurtado"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+ COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -85,7 +100,7 @@ plugins=(git archlinux npm gulp)
 export PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/opt/bin:/usr/bin/core_perl:/usr/games/bin:"
 
 # Ruby
-export PATH="${PATH}:/home/hackawax/.gem/ruby/2.4.0/bin"
+export PATH="${PATH}:/home/hackawax/.gem/ruby/2.5.0/bin"
 
 # Java
 export _JAVA_AWT_WM_NONREPARENTING=1
@@ -123,7 +138,7 @@ export ARCHFLAGS="-arch x86_64"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
-alias wget="wget -U 'noleak''"
+alias wget="wget -U 'noleak'"
 alias curl="curl --user-agent 'noleak'"
 alias shred="shred -zf"
 
@@ -142,13 +157,17 @@ alias cls="clear"
 
 alias vi="vim"
 alias svi="sudo vim"
+alias H="htop"
+alias S="startx"
 
 # Mirrorlist
-alias reflect="sudo reflector --verbose --country 'France' -l 30 -p http --sort rate --save /etc/pacman.d/mirrorlist"
+alias reflect="sudo reflector --verbose --country 'France' -l 15 -p http --sort rate --save /etc/pacman.d/mirrorlist"
 
 # Clean up
-alias rmcache="rm -rfv .cache/*"
-alias rmthumb="rm -rfv .thumbnails/*"
+alias rmc="rm -rfv .cache/*"
+alias rmt="rm -rfv .thumbnails/*"
+alias rmct="rm -rfv .cache/* && rm -rfv .thumbnails/*"
+alias bvrmct="browser-vacuum && rm -rfv .cache/* && rm -rfv .thumbnails/*"
 alias bv="browser-vacuum"
 
 # Clamscan
@@ -156,6 +175,8 @@ alias fresh="sudo freshclam"
 alias clamav="clamscan -r -i --exclude-dir='^/sys|^/proc|^/dev|^/lib|^/bin|^/sbin' /"
 alias clamove="clamscan --recursive=yes --infected --remove --exclude-dir='^/sys|^/proc|^/dev|^/lib|^/bin|^/sbin' /"
 alias claminf="clamscan --recursive=yes --infected --exclude-dir='^/sys|^/proc|^/dev|^/lib|^/bin|^/sbin' /"
+alias clamstrt="systemctl start clamav-daemon.service && systemctl start clamav-freshclam.service"
+alias clamstrp="systemctl stop clamav-daemon.service && systemctl stop clamav-freshclam.service"
 
 # Journalctl
 alias jctlxe="journalctl -xe"
@@ -187,34 +208,59 @@ alias ipa="ip -c address show"
 # AUR update
 alias aurup="yaourt -Syu --devel --aur"
 
-# Start | Stop lampp server
+# Start | Stop | lampp server
 alias lppstart="sudo /opt/lampp/lampp start"
 alias lppstop="sudo /opt/lampp/lampp stop"
 
-# Start | Stop apache & mysql
-alias startserver="systemctl start httpd.service && systemctl start mysqld.service"
-alias stopserver="systemctl stop httpd.service && systemctl start mysqld.service"
+# Start | Stop | apache | mysql | postfix
+alias startserver="systemctl start httpd.service && systemctl start mysqld.service && systemctl start postfix"
+alias stopserver="systemctl stop httpd.service && systemctl stop mysqld.service && systemctl stop postfix"
 
 # Ranger
 alias r="ranger"
 alias sr="sudo ranger"
 
-# Pacman
+# Pacman 
 alias rpi="pacman -Qs"
 alias rpd="pacman -Ss"
 
+# pacleaner
+alias pclnd="pacleaner -m -u --delete"
+alias pclnm="pacleaner -m"
+alias pclnu="pacleaner -u"
+
 # zsh
 alias sozh="source .zshrc"
+alias .="cd"
+alias ..="cd .."
 
 # Microcode
 alias mcode="dmesg | grep microcode"
 
 # macchanger
 alias mac="sudo macchanger -A enp5s0"
+alias macw="sudo macchanger -A wlp0s20u3u3"
 
 # generer mot de passe
-alias gpwd="</dev/urandom tr -dc '12345@#$%^&*(){}_A-Z-a-z-0-9'| fold -w10 | head -10"
-alias gpwd15="</dev/urandom tr -dc '12345@#$%^&*(){}_A-Z-a-z-0-9'| fold -w15 | head -10"
+alias gmodp="</dev/urandom tr -dc '12345@#$%^&*(){}_A-Z-a-z-0-9'| fold -w10 | head -10"
+alias gmodp15="</dev/urandom tr -dc '12345@#$%^&*(){}_A-Z-a-z-0-9'| fold -w15 | head -10"
 
 # in case of 'Error: watch' with npm
 alias ewnpm="echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p"
+
+# LUA 
+alias L="lua -i -e \"_PROMPT=' lua >'\""
+
+# php 
+alias phprun="php -S localhost:8400 -d display_errors=1 -t"
+
+# Xephyr
+alias xawm="Xephyr -screen 1280x800 :5 & sleep 1 ; DISPLAY=:5 awesome"
+#alias xdawm="Xephyr :5 -ac -br -noreset -screen 1152x720 & DISPLAY=:5.0 awesome -c ~/.config/awesome/rc.lua.new"
+#alias xdawm="Xephyr -ac -br -noreset -screen 1152x720 :5 & sleep 1 ; DISPLAY=:5.0 awesome -c ~/.config/awesome/rc.lua.new"
+alias xdawm="Xephyr -ac -br -noreset -screen 1600x900 :5 & sleep 1 ; DISPLAY=:5.0 awesome -c ~/.config/awesome/rc.lua.new"
+
+# Awesome WM 
+alias awrc="$EDITOR $HOME/.config/awesome/rc.lua"
+alias awdir="cd $HOME/.config/awesome"
+alias awcl="awesome-client"
