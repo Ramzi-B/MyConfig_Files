@@ -1,7 +1,32 @@
-#!/bin/bash
+#!/bin/sh
 
-timestamp="$(date +%Y%m%d%H%M%S)"
-targetbase="$HOME/screenshots"
-mkdir -p $targetbase
-[ -d $targetbase ] || exit 1
-scrot $targetbase/$timestamp.png
+targetbase="$HOME/Screenshots"
+timestamp="$(date +%Hh-%Mm-%Ss-%d-%m-%Y)"
+scicon="$HOME/.icons/oomox-omega_paper/apps/scalable/applets-screenshooter.svg"
+
+scpath="$targetbase/$timestamp.png"
+sc_fullscreen="scrot $scpath"
+scareascreen="scrot -s $scpath"
+sctimer="scrot -cd 5 $scpath"
+
+playsound () {
+    canberra-gtk-play -i screen-capture -d "take screenshot"
+}
+
+shownotif () {
+    notify-send -i $scicon "Screenshot Taken" $scpath    
+}
+
+takefullscreen () {
+    $sc_fullscreen
+    #$sctimer
+    shownotif
+    playsound
+    #shownotif
+}
+
+if [ ! -e $targetbase ] ; then
+    mkdir -p $targetbase
+fi
+
+takefullscreen
