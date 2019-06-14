@@ -5,7 +5,7 @@ timestamp="$(date +%Hh-%Mm-%Ss-%d-%m-%Y)"
 scicon="$HOME/.icons/oomox-omega_paper/apps/scalable/applets-screenshooter.svg"
 
 scpath="$targetbase/$timestamp.png"
-sc_fullscreen="scrot $scpath"
+scfullscreen="scrot $scpath"
 scareascreen="scrot -s $scpath"
 sctimer="scrot -cd 5 $scpath"
 
@@ -18,7 +18,7 @@ shownotif () {
 }
 
 takefullscreen () {
-    $sc_fullscreen
+    $scfullscreen
     #$sctimer
     shownotif
     playsound
