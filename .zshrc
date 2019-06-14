@@ -1,10 +1,22 @@
-export ZSH=/home/hackawax/.dotfiles/oh-my-zsh
+export ZSH=$HOME/.dotfiles/oh-my-zsh
 export SHELL="/bin/zsh"
 export EDITOR="vim"
 export VISUAL="vim"
 export TERM="xterm-256color"
 
-# npm path
+# If Termite
+#if [[ $TERM == xterm-termite ]]; then
+#    . /etc/profile.d/vte.sh
+#    __vte_osc7
+#fi
+
+#if [[ $TERM == xterm-termite ]] && [[ -z "$SSH_CLIENT" ]] || [[ -z "$SSH_TTY" ]]; then
+#  . /etc/profile.d/vte.sh
+#  __vte_osc7
+#fi
+
+
+# npm path -- 
 export PATH=~/.npm-global/bin:$PATH
 
 # xterm transparence
@@ -36,20 +48,24 @@ fi
 #screenfetch | lolcat
 
 # Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
 #ZSH_THEME="xiong-chiamiov-plus"
-ZSH_THEME="agnoster"
+#ZSH_THEME="agnoster"
 #ZSH_THEME="amuse"
 #ZSH_THEME="ys"
 #ZSH_THEME="gentoo"
 #ZSH_THEME="bira"
 #ZSH_THEME="juanghurtado"
 #ZSH_THEME="theunraveler"
-#POWERLEVEL9K_MODE='nerdfont-complete'
-#POWERLEVEL9K_MODE='awesome-fontconfig'
 #ZSH_THEME="powerlevel9k/powerlevel9k"
+
+# 9K from arch repo
+#POWERLEVEL9K_MODE='awesome-fontconfig'
+POWERLEVEL9K_MODE='nerdfont-complete'
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+POWERLEVEL9K_DISABLE_RPROMPT=true
+#POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{5}>%f%k"
+source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -74,7 +90,7 @@ ZSH_THEME="agnoster"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
- COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -100,7 +116,8 @@ plugins=(git archlinux npm gulp)
 export PATH="/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:/opt/bin:/usr/bin/core_perl:/usr/games/bin:"
 
 # Ruby
-export PATH="${PATH}:/home/hackawax/.gem/ruby/2.5.0/bin"
+# export PATH="${PATH}:/home/hackawax/.gem/ruby/2.6.0/bin"
+export PATH="${PATH}:$HOME/.gem/ruby/2.6.0/bin"
 
 # Java
 export _JAVA_AWT_WM_NONREPARENTING=1
@@ -112,7 +129,7 @@ export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 
-# You may need to manually set your language environment
+# language environment
 export LANG=fr_FR.UTF-8
 
 # Preferred editor for local and remote sessions
@@ -128,16 +145,7 @@ export ARCHFLAGS="-arch x86_64"
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-
+# aliases 
 alias wget="wget -U 'noleak'"
 alias curl="curl --user-agent 'noleak'"
 alias shred="shred -zf"
@@ -148,7 +156,7 @@ alias cky="conky"
 alias kcky="killall conky"
 
 alias news="newsboat"
-alias vbox="virtualbox -style gtk2"
+#alias vbox="virtualbox -style gtk2"
 
 alias ll="ls -larth"
 alias lc="ls -a"
@@ -175,20 +183,21 @@ alias fresh="sudo freshclam"
 alias clamav="clamscan -r -i --exclude-dir='^/sys|^/proc|^/dev|^/lib|^/bin|^/sbin' /"
 alias clamove="clamscan --recursive=yes --infected --remove --exclude-dir='^/sys|^/proc|^/dev|^/lib|^/bin|^/sbin' /"
 alias claminf="clamscan --recursive=yes --infected --exclude-dir='^/sys|^/proc|^/dev|^/lib|^/bin|^/sbin' /"
-alias clamstrt="systemctl start clamav-daemon.service && systemctl start clamav-freshclam.service"
-alias clamstrp="systemctl stop clamav-daemon.service && systemctl stop clamav-freshclam.service"
+alias clamstt="systemctl start clamav-daemon.service && systemctl start clamav-freshclam.service"
+alias clamstp="systemctl stop clamav-daemon.service && systemctl stop clamav-freshclam.service"
 
 # Journalctl
 alias jctlxe="journalctl -xe"
 alias jctlxn="journalctl -xn"
 alias jctlf="journalctl -f"
+alias jctlfp="journalctl _fp err"
 
 # Systemctl
-alias sctllsa="systemctl -lt service --all"
-alias sctlfa="systemctl --failed --all"
-alias sctlf="systemctl --failed"
-alias sctlluf="systemctl list-unit-files"
-alias sctltyp="systemctl --type=service"
+alias syslsa="systemctl -lt service --all"
+alias syslfa="systemctl --failed --all"
+alias sysf="systemctl --failed"
+alias sysluf="systemctl list-unit-files"
+alias systyp="systemctl --type=service"
 
 # Yaourt
 alias yaqma="yaourt -Qma"
@@ -196,8 +205,8 @@ alias yac="yaourt -C"
 alias yasts="yaourt --stats"
 alias orphan="yaourt -Qdt"
 
-# All apps
-alias cpkglst="pacman -Qqe | grep -vx \"$(pacman -Qqm)\" > /home/hackawax/Desktop/pkg.list"
+# Backups all apps
+alias cpkglst="pacman -Qqe | grep -vx \"$(pacman -Qqm)\" > $HOME/Desktop/pkg.list"
 
 # Net
 alias sntstp="sudo netstat -tp"
@@ -206,15 +215,15 @@ alias srape="sudo etherape"
 alias ipa="ip -c address show"
 
 # AUR update
-alias aurup="yaourt -Syu --devel --aur"
+#alias aurup="yaourt -Syu --devel --aur"
 
 # Start | Stop | lampp server
-alias lppstart="sudo /opt/lampp/lampp start"
-alias lppstop="sudo /opt/lampp/lampp stop"
+#alias lppstart="sudo /opt/lampp/lampp start"
+#alias lppstop="sudo /opt/lampp/lampp stop"
 
 # Start | Stop | apache | mysql | postfix
-alias startserver="systemctl start httpd.service && systemctl start mysqld.service && systemctl start postfix"
-alias stopserver="systemctl stop httpd.service && systemctl stop mysqld.service && systemctl stop postfix"
+alias stts="systemctl start httpd.service && systemctl start mysqld.service && systemctl start postfix"
+alias stps="systemctl stop httpd.service && systemctl stop mysqld.service && systemctl stop postfix"
 
 # Ranger
 alias r="ranger"
@@ -243,24 +252,25 @@ alias macw="sudo macchanger -A wlp0s20u3u3"
 
 # generer mot de passe
 alias gmodp="</dev/urandom tr -dc '12345@#$%^&*(){}_A-Z-a-z-0-9'| fold -w10 | head -10"
-alias gmodp15="</dev/urandom tr -dc '12345@#$%^&*(){}_A-Z-a-z-0-9'| fold -w15 | head -10"
+alias gmodp15="</dev/urandom tr -dc '12345@#$%^&*(){}_A-Z-a-z-0-9'| fold -w15 | head -15"
 
 # in case of 'Error: watch' with npm
 alias ewnpm="echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p"
 
 # LUA 
-alias L="lua -i -e \"_PROMPT=' lua >'\""
+alias L="lua -i -e \"_PROMPT=' lua > '\""
 
 # php 
 alias phprun="php -S localhost:8400 -d display_errors=1 -t"
 
 # Xephyr
 alias xawm="Xephyr -screen 1280x800 :5 & sleep 1 ; DISPLAY=:5 awesome"
-#alias xdawm="Xephyr :5 -ac -br -noreset -screen 1152x720 & DISPLAY=:5.0 awesome -c ~/.config/awesome/rc.lua.new"
-#alias xdawm="Xephyr -ac -br -noreset -screen 1152x720 :5 & sleep 1 ; DISPLAY=:5.0 awesome -c ~/.config/awesome/rc.lua.new"
-alias xdawm="Xephyr -ac -br -noreset -screen 1600x900 :5 & sleep 1 ; DISPLAY=:5.0 awesome -c ~/.config/awesome/rc.lua.new"
+#alias xdawm="Xephyr -ac -br -noreset -screen 1600x900 :5 & sleep 1; DISPLAY=:5.0 awesome -c ~/.config/awesome/rc.lua.new"
+alias xdawm="Xephyr -ac -br -noreset -screen 1152x720 :5 & sleep 1; DISPLAY=:5.0 awesome -c ~/.config/awesome/rc.lua.new"
 
 # Awesome WM 
 alias awrc="$EDITOR $HOME/.config/awesome/rc.lua"
 alias awdir="cd $HOME/.config/awesome"
+alias awth="cd $HOME/.config/awesome/themes"
 alias awcl="awesome-client"
+alias awgit="cd $HOME/MyGitHub/awesome-brainwork"

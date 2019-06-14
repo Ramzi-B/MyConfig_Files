@@ -6,7 +6,11 @@ set autoindent
 set smarthome
 
 ## Set color
-set titlecolor brightwhite.blue
-set statuscolor brightwhite.green
+#set titlecolor brightwhite.blue
+##set statuscolor brightwhite.green
 set keycolor red
 set functioncolor yellow
+
+## Scroll line by line
+set smooth
+

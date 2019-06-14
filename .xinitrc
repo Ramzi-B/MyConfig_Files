@@ -41,17 +41,15 @@ nvidia-settings --load-config-only &
 
 # Start apps
 unclutter &
-compton -b &
+#compton -b &
 nm-applet &
 kalu &
 nvdock &
 
-urxvt -bg black -fg orange -T Terminal -e  htop &
-urxvt -bg black -fg darkgray -T Terminal -e ranger &
-urxvt -bg black -fg darkred -T Terminal &
-
-#test#
-#export GTK2_RC_FILES="$HOME/.gtkrc-2.0"
+# urxvt -bg black -fg orange -T Terminal -e  htop &
+# urxvt -bg black -fg darkgray -T Terminal -e ranger &
+# urxvt -bg black -fg darkred -T Terminal &
 
 # Start Windows Manager
-exec awesome
+#exec awesome
+exec /usr/bin/awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr

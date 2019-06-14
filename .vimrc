@@ -2,16 +2,22 @@
 
 set encoding=utf-8  " always encode in utf
 set nocompatible    " use vim defaults instead of vi
+set viminfo+=n~/.vim/tmpfile/viminfo
 
 " -- Plugins -- "
-filetype off
 
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin' 
 Plugin 'L9'
+Plugin 'powerline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'ryanoasis/vim-devicons'
 
 map <C-n> :NERDTreeToggle<CR>
 
@@ -23,22 +29,36 @@ call vundle#end()
 filetype plugin indent on
 execute pathogen#infect()
 syntax on
-colorscheme darkblue
 
-"-- colors matrix --"
+" -- ColorSheme -- "
+
+"colorscheme molokai 
+"colorscheme monokain 
+"colorscheme Monokai 
+"colorscheme material 
+"colorscheme solarized 
+"colorscheme hybrid 
+"colorscheme darkblue 
+"colorscheme hybrid_material 
+"colorscheme zenburn 
+"colorscheme onedark 
+"colorscheme Tomorrow-Night 
+
+"-- Statusline --"
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+set noshowmode
+set showtabline=2
 
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
-
+" -- Syntastic -- "
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" -- NerdTree -- "
 let g:NERDTreeIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
@@ -51,7 +71,24 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
-map <C -n> :NERDTreeToggle<CR>
+"let g:NERDTreeDirArrowExpandable = '▸'
+"let g:NERDTreeDirArrowCollapsible = '▾'
+    
+" -- Powerline -- "
+
+set rtp+=/usr/lib/python3.7/site-packages/powerline/bindings/vim
+let g:powerline_pycmd="py3"
+let g:PowerLine_symbols  = 'fancy'
+"let g:PowerLine_stl_path_style = 'short'
+
+let g:python2_host_prog = "/usr/local/bin/python2.7"
+let g:python3_host_prog = "/usr/local/bin/python3.7"
+
+" -- vim airline -- "
+let g:airline_powerline_fonts = 1
+
+let g:webdevicons_enable_nerdtree = 1
+let g:webdevicons_enble = 1
 
 " General
 set background=dark            " dark background
@@ -65,8 +102,8 @@ set lazyredraw                 " don't update screen when executing macros
 set mouse=a                    " enable mouse in all modes
 set wrap                       " word wrap
 set linebreak                  " attempt to wrap lines cleanly
-set number                     " show line numbers
-set cursorline                 " highlight cursor line
+set number relativenumber      " show line numbers
+set nocursorline               " highlight cursor line
 set title                      " use filename in window title
 set ttyfast                    " you've got a fast terminal
 
@@ -80,8 +117,8 @@ set autoindent                 " copy indent from previous line
 set expandtab                  " replace tabs with spaces
 set shiftwidth=4               " spaces for autoindenting
 set smarttab                   " <BS> removes shiftwidth worth of spaces
-set softtabstop=2              " spaces for editing, e.g. <Tab> or <BS>
-set tabstop=2                  " spaces for <Tab>
+set softtabstop=4              " spaces for editing, e.g. <Tab> or <BS>
+set tabstop=4                  " spaces for <Tab>
 
 " Searches
 set hlsearch                   " highlight search results
@@ -93,22 +130,6 @@ set showmatch                  " show bracket matches
 set textwidth=0                " don't break lines after some maximum width
 set wildmenu                   " enhanced cmd line completion
 set ruler                      " shows ruler
-
-
-" gVim
-if has('gui_running')
-  set guioptions-=m                " remove menu
-  set guioptions-=T                " remove toolbar
-  set guioptions-=r                " remove right scrollbar
-  set guioptions-=b                " remove bottom scrollbar
-  set guioptions-=L                " remove left scrollbar
-  set guifont=Tamsyn\ 10.5         " setting gui font
-  set guicursor+=a:block-blinkon0  " always use block cursor, no cursor blinking
-  colorscheme jellybeans
-  " Paste from PRIMARY and CLIPBOARD
-  inoremap <silent> <M-v> <Esc>"+p`]a
-  inoremap <silent> <S-Insert> <Esc>"*p`]a
-endif
 
 " vimdiff
 if &diff
@@ -150,7 +171,7 @@ set pastetoggle=<F2>
 nnoremap <leader>d "=strftime("%d %b, %Y %X")<CR>p
 nnoremap <leader>D "=strftime("%d %b, %Y %X")<CR>P
 
-" Shortcut for Tabularize
+" Shortcut for Tabularize 
 nnoremap <leader>t :Tabularize /
 vnoremap <leader>t :Tabularize /
 
@@ -172,12 +193,14 @@ let g:dwm_master_pane_width=96
 
 function! ToggleFoldMethod()
 if &foldmethod == 'indent'
-  set foldmethod=marker
-  echo "foldmethod=marker"
+    set foldmethod=marker
+    echo "foldmethod=marker"
 else
-  set foldmethod=indent
-  echo "foldmethod=indent"
+    set foldmethod=indent
+    echo "foldmethod=indent"
 endif
 endfunction
 
-" autocmd vimenter * NERDTree
+" -- Open NerdTree at start -- "
+"autocmd vimenter * NERDTree
+
