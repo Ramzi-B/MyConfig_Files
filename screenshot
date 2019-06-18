@@ -1,7 +1,7 @@
 #!/bin/sh
 
 targetbase="$HOME/Screenshots"
-timestamp="$(date +%Hh-%Mm-%Ss-%d-%m-%Y)"
+timestamp="$(date +%d-%m-%Y-%Hh-%Mm-%Ss)"
 scicon="$HOME/.icons/oomox-omega_paper/apps/scalable/applets-screenshooter.svg"
 
 scpath="$targetbase/$timestamp.png"
@@ -10,7 +10,7 @@ scareascreen="scrot -s $scpath"
 sctimer="scrot -cd 5 $scpath"
 
 playsound () {
-    canberra-gtk-play -i screen-capture -d "take screenshot"
+    canberra-gtk-play -i camera-shutter -d "take screenshot"
 }
 
 shownotif () {

@@ -190,7 +190,7 @@ alias clamstp="systemctl stop clamav-daemon.service && systemctl stop clamav-fre
 alias jctlxe="journalctl -xe"
 alias jctlxn="journalctl -xn"
 alias jctlf="journalctl -f"
-alias jctlfp="journalctl _fp err"
+alias jctlfp="journalctl -fp err"
 
 # Systemctl
 alias syslsa="systemctl -lt service --all"
